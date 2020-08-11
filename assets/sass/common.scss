@@ -1,0 +1,16 @@
+body {
+    h1 {
+    }
+    background-color: $color-bg;
+}
+
+.is-convex {
+    background: #f4fbff;
+    border: none;
+    box-shadow:  4px 4px 8px #cfd5d9, -6px -6px 8px #ffffff;
+}
+
+.is-concave {
+    background: #f4fbff;
+    box-shadow: inset 4px 4px 8px #d9dfe3, inset -4px -4px 8px #ffffff;
+}
