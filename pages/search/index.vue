@@ -1,4 +1,5 @@
 <template>
+  <button-normal />
 </template>
 
 <script>

@@ -1,6 +1,5 @@
-body {
-    h1 {
-    }
+body, html{
+    height: 100%;
     background-color: $color-bg;
 }
 
@@ -12,5 +11,13 @@ body {
 
 .is-concave {
     background: #f4fbff;
-    box-shadow: inset 4px 4px 8px #d9dfe3, inset -4px -4px 8px #ffffff;
+    box-shadow: inset 6px 6px 8px #d9dfe3, inset -6px -6px 8px #ffffff;
+}
+
+button:focus {
+	outline:0;
+}
+
+input:focus {
+    outline: 0;
 }
