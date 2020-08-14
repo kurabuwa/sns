@@ -11,11 +11,11 @@
 </template>
 
 <script>
-  import { IconUser } from '@/components/atoms/icon';
+  import { IconUserA } from '@/components/atoms/icon';
 
   export default {
     components: {
-      IconUser,
+      IconUserA,
     },
     data() {
       return {
