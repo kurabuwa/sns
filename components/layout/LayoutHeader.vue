@@ -12,7 +12,6 @@
 
 <script>
   import { IconUser } from '@/components/atoms/icon';
-  import IconUserSelf from '~/assets/img/avatar_self.jpeg';
 
   export default {
     components: {
@@ -20,7 +19,7 @@
     },
     data() {
       return {
-        iconSrc: IconUserSelf,
+        iconSrc: this.$store.state.iconSelf,
         pageType: '',
         title: '投稿',
       };

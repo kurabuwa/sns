@@ -1,6 +1,8 @@
 import IconUserImg from '~/assets/img/avatar_cat.jpg';
+import IconUserSelf from '~/assets/img/avatar_self.jpeg';
 
 export const state = () => ({
+  iconSelf: IconUserSelf,
   postData: [
     {
       id: 1,
