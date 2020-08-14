@@ -33,7 +33,7 @@
     },
     data() {
       return {
-        buttonName: [ 'reply', 'favorite', 'retweet'],
+        buttonName: [ 'reply', 'heart', 'retweet'],
       }
     },
     components: {
@@ -79,7 +79,7 @@
 
 
         &__button {
-          padding-right: 8rem;
+          padding-right: 6rem;
 
           &:last-of-type {
             padding-right: 2rem;

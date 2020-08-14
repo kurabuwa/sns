@@ -3,15 +3,6 @@
     <post-tire
       :postData='postData'
       />
-    <post-tire
-      :postData='postData'
-      />
-    <post-tire
-      :postData='postData'
-      />
-    <post-tire
-      :postData='postData'
-      />
   </div>
 </template>
 

@@ -9,8 +9,8 @@ export const state = () => ({
       text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
       pressedCount: {
         reply: 4,
-        favorite: 4,
-        share: 1,
+        heart: 4,
+        retweet: 1,
       },
       press: {
         reply: false,
@@ -25,8 +25,8 @@ export const state = () => ({
       text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
       pressedCount: {
         reply: 4,
-        favorite: 4,
-        share: 1,
+        heart: 4,
+        retweet: 1,
       },
       press: {
         reply: false,
@@ -41,8 +41,8 @@ export const state = () => ({
       text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
       pressedCount: {
         reply: 4,
-        favorite: 4,
-        share: 1,
+        heart: 4,
+        retweet: 1,
       },
       press: {
         reply: false,
@@ -57,8 +57,8 @@ export const state = () => ({
       text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
       pressedCount: {
         reply: 4,
-        favorite: 4,
-        share: 1,
+        heart: 4,
+        retweet: 1,
       },
       press: {
         reply: false,
@@ -73,8 +73,8 @@ export const state = () => ({
       text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
       pressedCount: {
         reply: 4,
-        favorite: 4,
-        share: 1,
+        heart: 4,
+        retweet: 1,
       },
       press: {
         reply: false,
@@ -89,13 +89,13 @@ export const state = () => ({
       text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
       pressedCount: {
         reply: 4,
-        favorite: 4,
-        share: 1,
+        heart: 4,
+        retweet: 1,
       },
       press: {
         reply: false,
-        favorite: false,
-        share: false,
+        heart: false,
+        retweet: false,
       }
     },
   ],
@@ -109,6 +109,8 @@ export const mutations = {
         pressedIndex = index;
       }
     })
+    console.log(pressedData.id, pressedData.name);
     state.postData[pressedIndex].press[pressedData.name] = !state.postData[pressedIndex].press[pressedData.name];
+    console.log(state.postData[pressedIndex].press[pressedData.name]);
   }
 }

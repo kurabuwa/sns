@@ -31,17 +31,17 @@ export default {
     }
   },
   created() {
-    if(process.browser){
+    if(process.client){
     this.windowHeight = window.innerHeight
     }
   },
   mounted() {
-    if(process.browser){
+    if(process.client){
       window.addEventListener('resize', this.handleResize)
     }
   },
   beforeDestroy() {
-    if(process.browser){
+    if(process.clinet){
       window.removeEventListener('resize', this.handleResize)
     }
   },
@@ -55,7 +55,7 @@ export default {
         }
       },
       handleResize: function() {
-      if(process.browser){
+      if(process.client){
           console.log('resize');
         if(this.windowHeight - window.innerHeight >= 10){
           this.isActive.window = false;
