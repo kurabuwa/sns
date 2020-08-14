@@ -1,8 +1,8 @@
 <template>
   <div class='wrapper'>
-    <layout-header />
+    <layout-header v-if='isActiveHeader'/>
     <Nuxt class='content'/>
-    <layout-footer />
+    <layout-footer v-if='isActiveFooter'/>
   </div>
 </template>
 
@@ -11,16 +11,43 @@
   import LayoutFooter from '@/components/layout/LayoutFooter';
 
   export default {
+    data() {
+      return {
+        hiddenHeaderName: [],
+        hiddenFooterName: [],
+      }
+    },
     components: {
       LayoutFooter,
     },
+    computed: {
+      isActiveHeader() {
+        const result = this.hiddenHeaderName.filter(this.searchPageName)
+        if(result.length !== 0){
+          return false;
+        }
+        return true;
+      },
+      isActiveFooter() {
+        const result = this.hiddenFooterName.filter(this.searchPageName)
+        if(result.length !== 0){
+          return false;
+        }
+        return true;
+      },
+    },
+    methods: {
+      searchPageName(value) {
+        return this.$route.name === value;
+      }
+    }
   }
 </script>
 
 <style>
 .content {
   z-index: 1;
-  margin-bottom: 6rem;
+  min-height: 100vh;
 }
 html {
   font-family:
@@ -50,11 +77,7 @@ html {
   border: none;
 }
 
-#_layout {
-  max-width: 375px;
-  margin: 0 auto;
-}
-
 .wrapper {
+  height: 100%;
 }
 </style>

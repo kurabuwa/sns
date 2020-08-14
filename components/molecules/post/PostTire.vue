@@ -9,9 +9,13 @@
           <p class='post-tire__list__right__title'>{{post.userName}}</p>
           <p class='post-tire__list__right__text'>{{post.text}}</p>
           <div class='post-tire__list__right__buttons'>
-            <button-reply class='post-tire__list__right__buttons__button' @emit='reply(index)' :press='post.press.reply' />
-            <button-favorite class='post-tire__list__right__buttons__button' @emit='favorite(index)' :press='post.press.favorite' />
-            <button-share class='post-tire__list__right__buttons__button' @emit='share(index)' :press='post.press.share' />
+            <button-action class='post-tire__list__right__buttons__button'
+              v-for='name in buttonName'
+              :key='name.id'
+              @emit='pressed($event, post.id)'
+              :press='post.press[name]'
+              :name='name'
+              :count='post.pressedCount[name]'/>
           </div>
         </div>
       </li>
@@ -20,32 +24,28 @@
 </template>
 
 <script>
-  import { ButtonReply, ButtonFavorite, ButtonShare }from '@/components/atoms/button';
+  import { ButtonAction }from '@/components/atoms/button';
   import { IconUser } from '@/components/atoms/icon';
 
   export default {
     props: {
       postData: Array,
     },
+    data() {
+      return {
+        buttonName: [ 'reply', 'favorite', 'retweet'],
+      }
+    },
     components: {
-      ButtonReply,
-      ButtonFavorite,
-      ButtonShare,
+      ButtonAction,
       IconUser,
     },
-    creted() {
-      console.log(this.postData)
+    created() {
     },
     methods: {
-      reply(index) {
-        this.postData[index].press.reply = !this.postData[index].press.reply;
-      },
-      favorite(index) {
-        this.postData[index].press.favorite = !this.postData[index].press.favorite;
-      },
-      share(index) {
-        this.postData[index].press.share = !this.postData[index].press.share;
-      },
+      pressed(name, id) {
+        this.$store.commit('pressed', { name: name, id: id} );
+      }
     }
   }
 </script>

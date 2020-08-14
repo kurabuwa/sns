@@ -3,6 +3,14 @@ body, html{
     background-color: $color-bg;
 }
 
+#__layout {
+    height: 100%;
+}
+
+#__nuxt {
+    height: 100%;
+}
+
 .is-convex {
     background: #f4fbff;
     border: none;

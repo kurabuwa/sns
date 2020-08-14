@@ -1,8 +1,9 @@
 <template>
-  <div class='button-favorite' @click='$emit( "emit")'>
+  <div :class="`button-${name}`" @click='$emit( "emit", name)'>
     <div :class='addClass'>
-      <i class="fas fa-heart"></i>
+      <i :class="`fas fa-${iconName}`"></i>
     </div>
+    <p>{{count}}</p>
   </div>
 </template>
 
@@ -11,6 +12,8 @@
 export default {
   props: {
     press: Boolean,
+    count: Number,
+    name: String,
   },
   computed: {
     addClass() {
@@ -20,6 +23,12 @@ export default {
         'is-concave': this.press,
       }
     },
+    iconName() {
+      if(this.name === 'favorite'){
+        return 'heart';
+      }
+      return this.name;
+    }
   },
 }
 </script>

@@ -57,7 +57,7 @@ export default {
       handleResize: function() {
       if(process.browser){
           console.log('resize');
-        if(this.windowHeight - window.innerHeight >= 1){
+        if(this.windowHeight - window.innerHeight >= 10){
           this.isActive.window = false;
         } else {
           this.isActive.window = true;
@@ -85,7 +85,7 @@ export default {
   .layout-footer {
     width: 100%;
     height: 5rem;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     display: flex;
     justify-content: space-around;

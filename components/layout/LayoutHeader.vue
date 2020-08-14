@@ -27,7 +27,6 @@
     },
     created() {
       this.pageType = this.$route.name;
-      console.log(this.pageType !== "search")
        if(this.pageType === 'index'){
         this.title = '投稿'
       } else if(this.pageType === 'search'){

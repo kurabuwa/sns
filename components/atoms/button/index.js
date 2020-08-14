@@ -1,9 +1,5 @@
-import ButtonShare from './ButtonShare';
-import ButtonFavorite from './ButtonFavorite';
-import ButtonReply from './ButtonReply';
+import ButtonAction from './ButtonAction';
 
 export {
-  ButtonShare,
-  ButtonFavorite,
-  ButtonReply
+  ButtonAction,
 };
