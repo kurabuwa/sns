@@ -17,6 +17,7 @@ export default {
   },
   computed: {
     addClass() {
+      console.log(this.press)
       return {
         'is-convex': !this.press,
         'button-heart__content': true,

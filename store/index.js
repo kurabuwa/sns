@@ -16,8 +16,8 @@ export const state = () => ({
       },
       press: {
         reply: false,
-        favorite: false,
-        share: false,
+        heart: false,
+        retweet: false,
       }
     },
     {
@@ -32,8 +32,8 @@ export const state = () => ({
       },
       press: {
         reply: false,
-        favorite: false,
-        share: false,
+        heart: false,
+        retweet: false,
       }
     },
     {
@@ -48,8 +48,8 @@ export const state = () => ({
       },
       press: {
         reply: false,
-        favorite: false,
-        share: false,
+        heart: false,
+        retweet: false,
       }
     },
     {
@@ -64,8 +64,8 @@ export const state = () => ({
       },
       press: {
         reply: false,
-        favorite: false,
-        share: false,
+        heart: false,
+        retweet: false,
       }
     },
     {
@@ -80,8 +80,8 @@ export const state = () => ({
       },
       press: {
         reply: false,
-        favorite: false,
-        share: false,
+        heart: false,
+        retweet: false,
       }
     },
     {

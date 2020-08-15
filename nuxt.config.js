@@ -71,5 +71,8 @@ export default {
    background_color: '#ffffff'
  },
   build: {
-  }
+  },
+  generate: {
+    fallback: true
+  },
 }
