@@ -4,6 +4,10 @@
       :postData='postData'
       @emit='movePage'
       />
+    <post-tire
+      :postData='postData'
+      @emit='movePage'
+      />
   </div>
 </template>
 

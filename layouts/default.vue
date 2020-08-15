@@ -11,6 +11,10 @@
   import LayoutFooter from '@/components/layout/LayoutFooter';
 
   export default {
+    transition: {
+      name: 'page',
+      mode: 'out-in'
+    },
     data() {
       return {
         hiddenHeaderName: ['post-id'],
@@ -80,13 +84,22 @@ html {
 
 .wrapper {
   height: 100%;
+  overflow-x: hidden;
 }
 
 .page-enter {
-  opacity: 0;
+  transform: translateX(100vw)
 }
 
 .page-enter-active {
-  transition: opacity .2s;
+  transition: transform .4s;
+}
+
+.page-leave-to {
+  transform: translateX(-100vw)
+}
+
+.page-leave-active {
+  transition: transform .2s;
 }
 </style>
