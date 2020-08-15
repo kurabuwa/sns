@@ -25,7 +25,7 @@
 
 <script>
   import { ButtonAction }from '@/components/atoms/button';
-  import { IconUserA } from '@/components/atoms/icon';
+  import { IconUser } from '@/components/atoms/icon';
 
   export default {
     props: {
@@ -38,7 +38,7 @@
     },
     components: {
       ButtonAction,
-      IconUserA,
+      IconUser,
     },
     created() {
     },

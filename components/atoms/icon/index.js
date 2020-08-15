@@ -1,5 +1,5 @@
-import IconUserA from './IconUserA';
+import IconUser from './IconUser';
 
 export {
-  IconUserA,
+  IconUser,
 };
