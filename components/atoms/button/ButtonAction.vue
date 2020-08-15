@@ -37,6 +37,7 @@ export default {
 .button-action__content {
   width: 2.4rem;
   height: 2.4rem;
+  font-size: 1.3rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -50,8 +51,10 @@ export default {
 .button-action {
   &__heart {
     color: #FF7C7C;
+    font-size: 1.25rem;
   }
   &__retweet {
+    font-size: 1.25rem;
     color: #5DD159;
   }
 }
