@@ -1,22 +1,24 @@
 <template>
-  <div class='layout-footer is-convex' v-if='isActive.window'>
-    <div @click='movePage("index")' class='layout-footer__home' :class='addClass("index")'>
-      <i class="fas fa-home layout-footer__home__icon"></i>
-      <p>ホーム</p>
+  <transition name='footer'>
+    <div id='hidden' class='layout-footer is-convex' v-if='isActive.window'>
+      <div @click='movePage("index")' class='layout-footer__home' :class='addClass("index")'>
+        <i class="fas fa-home layout-footer__home__icon"></i>
+        <p>ホーム</p>
+      </div>
+      <div @click='movePage("search")' class='layout-footer__search' :class='addClass("search")'>
+        <i class="fas fa-search layout-footer__search__icon"></i>
+        <p>検索</p>
+      </div>
+      <div @click='movePage("notice")' class='layout-footer__notice' :class='addClass("notice")'>
+        <i class="far fa-bell layout-footer__notice__icon"></i>
+        <p>通知</p>
+      </div>
+      <div @click='movePage("dm")'class='layout-footer__dm' :class='addClass("dm")'>
+        <i class="far fa-envelope layout-footer__dm__icon"></i>
+        <p>DM</p>
+      </div>
     </div>
-    <div @click='movePage("search")' class='layout-footer__search' :class='addClass("search")'>
-      <i class="fas fa-search layout-footer__search__icon"></i>
-      <p>検索</p>
-    </div>
-    <div @click='movePage("notice")' class='layout-footer__notice' :class='addClass("notice")'>
-      <i class="far fa-bell layout-footer__notice__icon"></i>
-      <p>通知</p>
-    </div>
-    <div @click='movePage("dm")'class='layout-footer__dm' :class='addClass("dm")'>
-      <i class="far fa-envelope layout-footer__dm__icon"></i>
-      <p>DM</p>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -56,11 +58,12 @@ export default {
       },
       handleResize: function() {
       if(process.client){
-          console.log('resize');
+        console.log('resize');
+        const elem = document.getElementById('hidden');
         if(this.windowHeight - window.innerHeight >= 10){
-          this.isActive.window = false;
+          elem.style.transform = 'translateY(200%)';
         } else {
-          this.isActive.window = true;
+          elem.style.transform = 'translateY(0)';
         };
       }
     }
@@ -81,6 +84,12 @@ export default {
   }
   %icon {
     font-size: 2rem;
+  }
+  .footer-enter {
+    transform: translateX(100vw)
+  }
+  .footer-enter-active {
+    transition: all .2s;
   }
   .layout-footer {
     z-index: 990;

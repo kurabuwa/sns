@@ -1,7 +1,7 @@
 <template>
   <div class='wrapper'>
     <layout-header v-if='isActiveHeader'/>
-    <Nuxt class='content'/>
+      <Nuxt class='content'/>
     <layout-footer v-if='isActiveFooter'/>
   </div>
 </template>
@@ -13,7 +13,6 @@
   export default {
     transition: {
       name: 'page',
-      mode: 'out-in'
     },
     data() {
       return {
@@ -92,7 +91,7 @@ html {
 }
 
 .page-enter-active {
-  transition: transform .4s;
+  transition: transform 1s;
 }
 
 .page-leave-to {
@@ -100,6 +99,6 @@ html {
 }
 
 .page-leave-active {
-  transition: transform .2s;
+  transition: transform 1s;
 }
 </style>

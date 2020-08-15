@@ -6,7 +6,7 @@
           <icon-user :src='post.src'/>
         </div>
         <div class='post-tire__list__right'>
-          <div @click='$emit("emit", "post-id", {id: post.id})'>
+          <div @click='$emit("emit", "post", {id: post.id})'>
             <p class='post-tire__list__right__title'>{{post.userName}}</p>
             <p class='post-tire__list__right__text'>{{post.text}}</p>
           </div>
