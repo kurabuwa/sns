@@ -1,5 +1,5 @@
 <template>
-  <h1> 動的ルーティング </h1>
+  <h1> 動的ルーティング{{$route.params.id}} </h1>
 </template>
 
 <script>
