@@ -1,6 +1,5 @@
 <template>
-  <transition>
-    <nuxt-link to='/' class='fsd'> 動的ルーティング{{$route.params.id}}
+  <transition name='post'>
     <div class='fsd'> 動的ルーティング{{$route.params.id}} </div>
     </nuxt-link>
   </transition>
@@ -19,19 +18,19 @@
   background-color: red;
 }
 
-.v-enter {
+.post-enter {
   transform: translateX(100vw)
 }
 
-.v-enter-active {
+.post-enter-active {
   transition: transform 1s;
 }
 
-.v-leave-to {
+.post-leave-to {
   transform: translateX(-100vw)
 }
 
-.v-leave-active {
+.post-leave-active {
   transition: transform 1s;
 }
 </style>
