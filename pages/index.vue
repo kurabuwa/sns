@@ -2,6 +2,7 @@
   <div>
     <post-tire
       :postData='postData'
+      @emit='movePage'
       />
   </div>
 </template>
@@ -18,6 +19,12 @@
     components: {
       PostTire,
     },
+    methods: {
+
+      movePage(name, params, query) {
+      this.$router.push({ name, params, query }, () => {});
+      },
+    }
   }
 </script>
 
