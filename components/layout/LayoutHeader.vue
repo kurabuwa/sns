@@ -55,6 +55,8 @@
 
 <style lang="scss">
   .layout-header {
+    z-index: 990;
+    margin-bottom: 1rem;
     width: 100vw;
     height: 5rem;
     position: sticky;

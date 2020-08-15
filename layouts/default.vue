@@ -13,8 +13,8 @@
   export default {
     data() {
       return {
-        hiddenHeaderName: [],
-        hiddenFooterName: [],
+        hiddenHeaderName: ['post-id'],
+        hiddenFooterName: ['post-id'],
       }
     },
     components: {
@@ -46,6 +46,7 @@
 
 <style>
 .content {
+  position: relative;
   z-index: 1;
   min-height: 100vh;
 }
@@ -79,5 +80,13 @@ html {
 
 .wrapper {
   height: 100%;
+}
+
+.page-enter {
+  opacity: 0;
+}
+
+.page-enter-active {
+  transition: opacity .2s;
 }
 </style>
