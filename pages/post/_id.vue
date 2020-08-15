@@ -1,8 +1,10 @@
 <template>
-  <transition name='post'>
-    <div class='fsd'> 動的ルーティング{{$route.params.id}} </div>
+    <div class='fsd'> 
+    <nuxt-link to='/'>
+    動的ルーティング{{$route.params.id}} 
     </nuxt-link>
-  </transition>
+    </div>
+    </nuxt-link>
 </template>
 
 <script>
@@ -13,24 +15,12 @@
 
 <style lang="scss">
 .fsd {
+  position: absolute;
+  top: 0rem;
+  z-index: 10000;
   width: 100vw;
   height: 100vh;
-  background-color: red;
+  background-color: white;
 }
 
-.post-enter {
-  transform: translateX(100vw)
-}
-
-.post-enter-active {
-  transition: transform 1s;
-}
-
-.post-leave-to {
-  transform: translateX(-100vw)
-}
-
-.post-leave-active {
-  transition: transform 1s;
-}
 </style>

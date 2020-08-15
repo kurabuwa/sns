@@ -91,14 +91,6 @@ html {
 }
 
 .page-enter-active {
-  transition: transform 1s;
-}
-
-.page-leave-to {
-  transform: translateX(-100vw)
-}
-
-.page-leave-active {
-  transition: transform 1s;
+  transition: transform .2s;
 }
 </style>

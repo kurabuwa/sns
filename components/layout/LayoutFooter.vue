@@ -85,12 +85,6 @@ export default {
   %icon {
     font-size: 2rem;
   }
-  .footer-enter {
-    transform: translateX(100vw)
-  }
-  .footer-enter-active {
-    transition: all .2s;
-  }
   .layout-footer {
     z-index: 990;
     width: 100%;
