@@ -17,12 +17,11 @@ export default {
   },
   computed: {
     addClass() {
-      console.log(this.press)
       return {
         'is-convex': !this.press,
-        'button-heart__content': true,
-        'button-retweet__content': true,
-        'button-reply__content': true,
+        'button-action__content': true,
+        'button-action__heart': this.name === 'heart' && this.press ? true : false,
+        'button-action__retweet': this.name === 'retweet' && this.press ? true: false,
         'is-concave': this.press,
       }
     },
@@ -35,7 +34,7 @@ export default {
   display: flex;
   align-items: center;
 }
-.button-heart__content {
+.button-action__content {
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 50%;
@@ -44,15 +43,16 @@ export default {
   justify-content: center;
 }
 
-.button-retweet__content {
-  @extend .button-heart__content;
-}
-
-.button-reply__content {
-  @extend .button-heart__content;
-}
-
 .button-action__count {
   margin-left: 1rem;
+}
+
+.button-action {
+  &__heart {
+    color: #FF7C7C;
+  }
+  &__retweet {
+    color: #5DD159;
+  }
 }
 </style>

@@ -111,8 +111,11 @@ export const mutations = {
         pressedIndex = index;
       }
     })
-    console.log(pressedData.id, pressedData.name);
+    if(!state.postData[pressedIndex].press[pressedData.name]) {
+      state.postData[pressedIndex].pressedCount[pressedData.name] += 1;
+    } else {
+      state.postData[pressedIndex].pressedCount[pressedData.name] -= 1;
+    }
     state.postData[pressedIndex].press[pressedData.name] = !state.postData[pressedIndex].press[pressedData.name];
-    console.log(state.postData[pressedIndex].press[pressedData.name]);
   }
 }
