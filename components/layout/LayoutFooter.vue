@@ -1,24 +1,22 @@
 <template>
-  <transition name='footer'>
-    <div id='hidden' class='layout-footer is-convex' v-if='isActive.window'>
-      <div @click='movePage("index")' class='layout-footer__home' :class='addClass("index")'>
-        <i class="fas fa-home layout-footer__home__icon"></i>
-        <p>ホーム</p>
-      </div>
-      <div @click='movePage("search")' class='layout-footer__search' :class='addClass("search")'>
-        <i class="fas fa-search layout-footer__search__icon"></i>
-        <p>検索</p>
-      </div>
-      <div @click='movePage("notice")' class='layout-footer__notice' :class='addClass("notice")'>
-        <i class="far fa-bell layout-footer__notice__icon"></i>
-        <p>通知</p>
-      </div>
-      <div @click='movePage("dm")'class='layout-footer__dm' :class='addClass("dm")'>
-        <i class="far fa-envelope layout-footer__dm__icon"></i>
-        <p>DM</p>
-      </div>
+  <div id='hidden' class='layout-footer is-convex' v-if='isActive.window'>
+    <div @click='movePage("index")' class='layout-footer__home' :class='addClass("index")'>
+      <i class="fas fa-home layout-footer__home__icon"></i>
+      <p>ホーム</p>
     </div>
-  </transition>
+    <div @click='movePage("search")' class='layout-footer__search' :class='addClass("search")'>
+      <i class="fas fa-search layout-footer__search__icon"></i>
+      <p>検索</p>
+    </div>
+    <div @click='movePage("notice")' class='layout-footer__notice' :class='addClass("notice")'>
+      <i class="far fa-bell layout-footer__notice__icon"></i>
+      <p>通知</p>
+    </div>
+    <div @click='movePage("dm")'class='layout-footer__dm' :class='addClass("dm")'>
+      <i class="far fa-envelope layout-footer__dm__icon"></i>
+      <p>DM</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -119,4 +117,5 @@ export default {
       }
     }
   }
+
 </style>

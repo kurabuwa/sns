@@ -1,8 +1,12 @@
 <template>
   <div class='wrapper'>
-    <layout-header v-if='isActiveHeader'/>
+    <transition name='header'>
+      <layout-header v-if='isActiveHeader'/>
+    </transition>
       <Nuxt class='content'/>
-    <layout-footer v-if='isActiveFooter'/>
+    <transition name='footer'>
+        <layout-footer v-if='isActiveFooter'/>
+    </transition>
   </div>
 </template>
 
@@ -16,8 +20,8 @@
     },
     data() {
       return {
-        hiddenHeaderName: ['post-id'],
-        hiddenFooterName: ['post-id'],
+        hiddenHeaderName: ['postid'],
+        hiddenFooterName: ['postid'],
       }
     },
     components: {
@@ -51,7 +55,7 @@
 .content {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  min-height: calc(100vh - 11rem);
 }
 html {
   font-family:
@@ -86,11 +90,4 @@ html {
   overflow-x: hidden;
 }
 
-.page-enter {
-  transform: translateX(100vw)
-}
-
-.page-enter-active {
-  transition: transform .2s;
-}
 </style>

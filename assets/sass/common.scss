@@ -29,3 +29,32 @@ button:focus {
 input:focus {
     outline: 0;
 }
+
+.footer {
+  &-enter {
+    opacity: 0;
+    &-to {
+      opacity: 0;
+    }
+    &-active {
+      transition: .1s;
+    }
+  }
+}
+
+.page {
+  &-enter {
+    opacity: 0;
+    &-active {
+      transition: all .1s;
+    }
+  }
+  &-leave {
+    &-to {
+      opacity: 0;
+    }
+    &-active {
+      transition: all .1s;
+    }
+  }
+}

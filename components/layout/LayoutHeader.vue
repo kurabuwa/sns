@@ -1,5 +1,4 @@
 <template>
-  <transition name='header'>
     <div class='layout-header is-convex'>
         <icon-user class='layout-header__icon__img' :src='iconSrc' />
         <p class='layout-header__title'　v-if='pageType !== "search"'>{{title}}</p>
@@ -9,7 +8,6 @@
           v-if='pageType === "search"' />
         <p class='layout-header__post'>+</p>
     </div>
-  </transition>
 </template>
 
 <script>
@@ -91,6 +89,5 @@
     }
   }
 
-  
-  
+
 </style>
