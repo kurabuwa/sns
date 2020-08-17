@@ -2,6 +2,7 @@
   <div>
     <button @click='logout'>
     ログアウト
+    {{$store.state.userData.name}}
     </button>
     <post-tire-box
       :postData='postData'
