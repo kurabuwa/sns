@@ -1,8 +1,13 @@
 import IconUserImg from '~/assets/img/avatar_cat.jpg';
 import IconUserSelf from '~/assets/img/avatar_self.jpeg';
+import firebase from '~/plugins/firebase';
 
 export const state = () => ({
   iconSelf: IconUserSelf,
+  userData: {
+    token: '',
+    name: '',
+  },
   postData: [
     {
       id: 1,
@@ -104,6 +109,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setLoginInfo(state, value) {
+    state.userData.token = value.uid;
+    state.userData.name = value.displayName;
+  },
   pressed(state, pressedData) {
     let pressedIndex;
     state.postData.forEach( (data, index) => {
@@ -117,5 +126,12 @@ export const mutations = {
       state.postData[pressedIndex].pressedCount[pressedData.name] -= 1;
     }
     state.postData[pressedIndex].press[pressedData.name] = !state.postData[pressedIndex].press[pressedData.name];
+  },
+}
+
+export const actions = {
+  login(context) {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
   }
 }

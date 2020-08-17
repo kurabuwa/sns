@@ -53,7 +53,6 @@
         this.postData = this.$store.state.postData.filter((data) => {
           if(data.id === Number(this.$route.params.id)) return true;
         })[0];
-        console.log(this.postData);
       }
     }
   }

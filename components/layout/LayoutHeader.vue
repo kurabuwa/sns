@@ -12,6 +12,9 @@
 
 <script>
   import { IconUser } from '@/components/atoms/icon';
+  import { mapMutations } from 'vuex';
+  import  firebase from '~/plugins/firebase';
+  import 'firebase/auth';
 
   export default {
     components: {
@@ -35,6 +38,22 @@
       }　else if(this.pageType === 'dm'){
         this.title = 'DM'
       }
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.setLoginInfo(user);
+        } else {
+          this.movePage('login');
+        }
+      });
+    },
+    methods: {
+      ...mapMutations(['setLoginInfo']),
+      pressed(name, id) {
+        this.$store.commit('pressed', { name: name, id: id} );
+      },
+      movePage(name, params, query) {
+      this.$router.push({ name, params, query }, () => {});
+      },
     },
     watch: {
       $route (to, from) {

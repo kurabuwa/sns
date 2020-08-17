@@ -51,7 +51,6 @@
     },
     methods: {
       pressed(name, id) {
-        console.log(this.postData);
         this.$store.commit('pressed', { name: name, id: id} );
       }
     }

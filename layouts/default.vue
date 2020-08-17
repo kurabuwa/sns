@@ -20,8 +20,8 @@
     },
     data() {
       return {
-        hiddenHeaderName: ['post-id'],
-        hiddenFooterName: ['post-id'],
+        hiddenHeaderName: ['post-id', 'login'],
+        hiddenFooterName: ['post-id', 'login'],
       }
     },
     components: {

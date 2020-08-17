@@ -1,16 +1,8 @@
 <template>
   <div>
-    <button @click='logout'>
-    ログアウト
+    <button @click='login()'>
+      googleでログイン
     </button>
-    <post-tire-box
-      :postData='postData'
-      @emit='movePage'
-      />
-    <post-tire-box
-      :postData='postData'
-      @emit='movePage'
-      />
   </div>
 </template>
 
@@ -28,14 +20,27 @@
     components: {
       PostTireBox,
     },
+    created() {
+      if(!this.$store.state.userData.token) {
+        this.movePage('login');
+      }
+    },
+    mounted() {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.$store.commit('setLoginInfo', user);
+          this.movePage('index');
+        }
+      });
+    },
     methods: {
+      login() {
+        this.$store.dispatch('login');
+      },
       movePage(name, params, query) {
       this.$router.push({ name, params, query }, () => {});
       },
-      logout() {
-        firebase.auth().signOut()
-      }
-    },
+    }
   }
 </script>
 
