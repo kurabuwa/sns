@@ -1,10 +1,10 @@
 <template>
   <div>
-    <post-tire
+    <post-tire-box
       :postData='postData'
       @emit='movePage'
       />
-    <post-tire
+    <post-tire-box
       :postData='postData'
       @emit='movePage'
       />
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import PostTire from '@/components/molecules/post/PostTire';
+  import PostTireBox from '@/components/molecules/post/PostTireBox';
 
   export default {
     data() {
@@ -21,7 +21,7 @@
       }
     },
     components: {
-      PostTire,
+      PostTireBox,
     },
     methods: {
 

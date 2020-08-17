@@ -14,12 +14,23 @@ body, html{
 .is-convex {
     background: #f4fbff;
     border: none;
-    box-shadow:  4px 4px 8px #cfd5d9, -6px -6px 8px #ffffff;
+    box-shadow:  4px 4px 6px #cfd5d9, -4px -4px 6px #ffffff;
+}
+
+.is-convex-reverse {
+    background: #f4fbff;
+    border: none;
+    box-shadow:  -2px -2px 2px #cfd5d9, 2px 2px 2px #ffffff;
 }
 
 .is-concave {
     background: #f4fbff;
-    box-shadow: inset 6px 6px 8px #d9dfe3, inset -6px -6px 8px #ffffff;
+    box-shadow: inset 3px 3px 4px #d9dfe3, inset -3px -3px 4px #ffffff;
+}
+
+.is-concave-border {
+    background: #f4fbff;
+    box-shadow: inset 2px 2px 2px #d9dfe3, inset -2px -2px 2px #ffffff;
 }
 
 button:focus {
@@ -37,7 +48,7 @@ input:focus {
       opacity: 0;
     }
     &-active {
-      transition: .1s;
+      transition: .05s;
     }
   }
 }
@@ -46,7 +57,7 @@ input:focus {
   &-enter {
     opacity: 0;
     &-active {
-      transition: all .1s;
+      transition: all .05s;
     }
   }
   &-leave {
@@ -54,7 +65,7 @@ input:focus {
       opacity: 0;
     }
     &-active {
-      transition: all .1s;
+      transition: all .05s;
     }
   }
 }

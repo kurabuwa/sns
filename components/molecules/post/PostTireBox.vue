@@ -69,11 +69,12 @@
       margin-left: 1rem;
 
       &__title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin: 1.5rem 0;
       }
 
       &__text {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         margin-bottom: 1rem;
       }
 

@@ -15,8 +15,8 @@
         addClass() {
           return {
             'icon-user__img': true,
-            'icon-user__img--small': this.small,
-            'icon-user__img--large': this.large,
+            'icon-user--small': this.small,
+            'icon-user--large': this.large,
           }
         },
       },
@@ -31,6 +31,8 @@
         border-radius: 50%;
       }
       &--small {
+        width: 3rem;
+        height: 3rem;
       }
     }
 </style>

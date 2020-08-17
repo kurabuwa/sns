@@ -1,11 +1,11 @@
 <template>
   <div class='wrapper'>
     <transition name='header'>
-      <layout-header v-if='isActiveHeader'/>
+      <layout-header :class='isHiddenHeader'/>
     </transition>
       <Nuxt class='content'/>
     <transition name='footer'>
-        <layout-footer v-if='isActiveFooter'/>
+        <layout-footer :class='isHiddenFooter'/>
     </transition>
   </div>
 </template>
@@ -20,25 +20,29 @@
     },
     data() {
       return {
-        hiddenHeaderName: ['postid'],
-        hiddenFooterName: ['postid'],
+        hiddenHeaderName: ['post-id'],
+        hiddenFooterName: ['post-id'],
       }
     },
     components: {
       LayoutFooter,
     },
     computed: {
-      isActiveHeader() {
+      isHiddenHeader() {
         const result = this.hiddenHeaderName.filter(this.searchPageName)
         if(result.length !== 0){
-          return false;
+          return {
+            'hidden': true,
+          };
         }
-        return true;
+        return false;
       },
-      isActiveFooter() {
+      isHiddenFooter() {
         const result = this.hiddenFooterName.filter(this.searchPageName)
         if(result.length !== 0){
-          return false;
+          return {
+            'hidden': true,
+          };
         }
         return true;
       },
@@ -56,6 +60,10 @@
   position: relative;
   z-index: 1;
   min-height: calc(100vh - 11rem);
+}
+
+.hidden {
+  opacity: 0;
 }
 html {
   font-family:
