@@ -1,9 +1,5 @@
 <template>
   <div>
-    <button @click='logout'>
-    ログアウト
-    {{$store.state.userData.name}}
-    </button>
     <post-tire-box
       :postData='postData'
       @emit='movePage'
@@ -37,11 +33,6 @@
       movePage(name, params, query) {
       this.$router.push({ name, params, query }, () => {});
       },
-      logout() {
-        firebase.auth().signOut();
-        this.$store.commit('deleteLoginInfo');
-        this.movePage('index');
-      }
     },
   }
 </script>

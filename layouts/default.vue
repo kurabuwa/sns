@@ -1,5 +1,5 @@
 <template>
-  <div class='wrapper'>
+  <div class='wrapper'　@touchmove='onScroll($event)' @touchend='leave'>
     <div v-if='!(loginCheck ===  "" || loginCheck ===  "dummy")'>
       <transition name='header'>
         <layout-header :class='isHiddenHeader'/>
@@ -34,6 +34,20 @@
         hiddenHeaderName: ['post-id', 'login'],
         hiddenFooterName: ['post-id', 'login'],
         isActive: false,
+        swipe: {
+          x: 0,
+          y: 0,
+          point: {
+            x: {
+              befor: 0,
+              after: 0,
+            },
+            y: {
+              befor: 0,
+              after: 0,
+            }
+          }
+        }
       }
     },
     components: {
@@ -67,15 +81,19 @@
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           this.setLoginInfo(user);
+          firebase.auth().currentUser.getIdToken(true).then((idToken) => {
+            this.setLoginInfoToken(idToken); 
+          }).catch(function(error) {
+            console.log('/default/tokenの取得に失敗しました');
+          });
         }else {
           this.deleteLoginInfo();
         }
-        console.log('mount');
         this.isActive = true;
       });
     },
     methods: {
-    ...mapMutations(['setLoginInfo', 'deleteLoginInfo']),
+    ...mapMutations(['setLoginInfo', 'deleteLoginInfo', 'setLoginInfoToken']),
       login() {
         this.$store.dispatch('login');
       },
@@ -84,6 +102,32 @@
       },
       searchPageName(value) {
         return this.$route.name === value;
+      },
+      onScroll(e) {
+        let calc = 0;
+        const ev = e.changedTouches[0];
+        this.swipe.point.x.before = this.swipe.point.x.after
+        this.swipe.point.x.after = ev.pageX
+        if(this.swipe.point.x.before !== 0) {
+          this.swipe.x += this.swipe.point.x.after - this.swipe.point.x.before;
+        }
+        this.swipe.point.y.before = this.swipe.point.y.after;
+        this.swipe.point.y.after = ev.pageY;
+        if(this.swipe.point.y.before !== 0) {
+          this.swipe.y += Math.abs(this.swipe.point.y.after - this.swipe.point.y.before);
+        }
+      },
+      leave() {
+        const calc = this.swipe.x / this.swipe.y;
+        if(calc > 5){
+          this.$router.go(-1);
+        }
+        this.swipe.point.x.before = 0;
+        this.swipe.point.x.after = 0;
+        this.swipe.point.y.before = 0;
+        this.swipe.point.y.after = 0;
+        this.swipe.x = 0;
+        this.swipe.y = 0;
       }
     },
   }

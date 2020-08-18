@@ -7,7 +7,7 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const state = () => ({
   iconSelf: IconUserSelf,
   userData: {
-    token: 'dummy',
+    uid: 'dummy',
     name: '',
   },
   postData: [
@@ -112,18 +112,22 @@ export const state = () => ({
 
 export const getters = {
   loginCheck (state) {
-    return state.userData.token;
+    return state.userData.uid;
   }
 }
 
 export const mutations = {
   setLoginInfo(state, value) {
-    state.userData.token = value.uid;
+    state.userData.uid = value.uid;
     state.userData.name = value.displayName;
   },
+  setLoginInfoToken(state, value) {
+    state.userData.token = value;
+  },
   deleteLoginInfo(state) {
-    state.userData.token = '';
+    state.userData.uid = '';
     state.userData.name = '';
+    state.userData.token = '';
   },
   pressed(state, pressedData) {
     let pressedIndex;
