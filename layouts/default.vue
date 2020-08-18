@@ -1,5 +1,5 @@
 <template>
-  <div class='wrapper'　@touchmove='onScroll($event)' @touchend='leave'>
+  <div class='wrapper'　@touchmove='onScroll($event)' @touchend='leave' @touchstart='start'>
     <div v-if='!(loginCheck ===  "" || loginCheck ===  "dummy")'>
       <transition name='header'>
         <layout-header :class='isHiddenHeader'/>
@@ -34,7 +34,13 @@
         hiddenHeaderName: ['post-id', 'login'],
         hiddenFooterName: ['post-id', 'login'],
         isActive: false,
+        windowsize: 0,
+        calcSize: 0,
         swipe: {
+          time: {
+            before: 0,
+            after: 0,
+          },
           x: 0,
           y: 0,
           point: {
@@ -78,6 +84,9 @@
     created() {
     },
     mounted() {
+      if(process.client){
+        this.windowSize = document.body.clientWidth;
+      }
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           this.setLoginInfo(user);
@@ -103,6 +112,11 @@
       searchPageName(value) {
         return this.$route.name === value;
       },
+      start() {
+        const date = new Date();
+        this.swipe.time.before = date.getSeconds()* 1000 + date.getMilliseconds() ;
+        console.log(this.swipe.time.before);
+      },
       onScroll(e) {
         let calc = 0;
         const ev = e.changedTouches[0];
@@ -118,8 +132,12 @@
         }
       },
       leave() {
-        const calc = this.swipe.x / this.swipe.y;
-        if(calc > 5){
+        const calcPoint = this.swipe.x / this.swipe.y;
+        const date = new Date();
+        this.swipe.time.after = date.getSeconds()* 1000 + date.getMilliseconds();
+        const calcTime = this.swipe.time.after - this.swipe.time.before;
+        this.calcSize =  this.swipe.x / this.windowSize;
+        if(calcPoint > 5 && calcTime < 150 && this.calcSize > 0.2 ){
           this.$router.go(-1);
         }
         this.swipe.point.x.before = 0;
