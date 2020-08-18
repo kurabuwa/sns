@@ -40,6 +40,7 @@
       logout() {
         firebase.auth().signOut();
         this.$store.commit('deleteLoginInfo');
+        this.movePage('index');
       }
     },
   }

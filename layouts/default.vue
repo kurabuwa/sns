@@ -23,7 +23,7 @@
   import LayoutFooter from '@/components/layout/LayoutFooter';
   import  firebase from '~/plugins/firebase';
   import 'firebase/auth';
-  import { mapState, mapGetters } from 'vuex';
+  import { mapState, mapMutations, mapGetters } from 'vuex';
 
   export default {
     transition: {
@@ -62,16 +62,20 @@
       },
     },
     created() {
+    },
+    mounted() {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           this.setLoginInfo(user);
         }else {
+          this.deleteLoginInfo();
         }
+        console.log('mount');
         this.isActive = true;
       });
     },
     methods: {
-    ...mapMutations(['setLoginInfo']),
+    ...mapMutations(['setLoginInfo', 'deleteLoginInfo']),
       login() {
         this.$store.dispatch('login');
       },
