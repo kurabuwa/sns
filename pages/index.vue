@@ -19,12 +19,16 @@
   import PostTireBox from '@/components/molecules/post/PostTireBox';
   import  firebase from '~/plugins/firebase';
   import 'firebase/auth';
+  import { mapState } from 'vuex';
 
   export default {
     data() {
       return {
         postData: this.$store.state.postData,
       }
+    },
+    computed: {
+      ...mapState(['userData'])
     },
     components: {
       PostTireBox,
@@ -34,7 +38,8 @@
       this.$router.push({ name, params, query }, () => {});
       },
       logout() {
-        firebase.auth().signOut()
+        firebase.auth().signOut();
+        this.$store.commit('deleteLoginInfo');
       }
     },
   }

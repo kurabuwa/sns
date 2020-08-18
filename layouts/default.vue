@@ -1,18 +1,29 @@
 <template>
   <div class='wrapper'>
-    <transition name='header'>
-      <layout-header :class='isHiddenHeader'/>
-    </transition>
-      <Nuxt class='content'/>
-    <transition name='footer'>
-        <layout-footer :class='isHiddenFooter'/>
-    </transition>
+    <div v-if='!(loginCheck ===  "" || loginCheck ===  "dummy")'>
+      <transition name='header'>
+        <layout-header :class='isHiddenHeader'/>
+      </transition>
+        <Nuxt class='content'/>
+      <transition name='footer'>
+          <layout-footer :class='isHiddenFooter'/>
+      </transition>
+    </div>
+    <button v-if='!loginCheck' @click='login()'>
+      googleでログイン
+    </button>
+    <button v-if='loginCheck === "dummy"' @click='login()'>
+      googleでログイン中
+    </button>
   </div>
 </template>
 
 <script>
   import LayoutHeader from '@/components/layout/LayoutHeader';
   import LayoutFooter from '@/components/layout/LayoutFooter';
+  import  firebase from '~/plugins/firebase';
+  import 'firebase/auth';
+  import { mapState, mapGetters } from 'vuex';
 
   export default {
     transition: {
@@ -22,12 +33,15 @@
       return {
         hiddenHeaderName: ['post-id', 'login'],
         hiddenFooterName: ['post-id', 'login'],
+        isActive: false,
       }
     },
     components: {
       LayoutFooter,
     },
     computed: {
+      ...mapState(['userData', 'isLogin']),
+      ...mapGetters(['loginCheck']),
       isHiddenHeader() {
         const result = this.hiddenHeaderName.filter(this.searchPageName)
         if(result.length !== 0){
@@ -47,11 +61,27 @@
         return true;
       },
     },
+    created() {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.setLoginInfo(user);
+        }else {
+        }
+        this.isActive = true;
+      });
+    },
     methods: {
+    ...mapMutations(['setLoginInfo']),
+      login() {
+        this.$store.dispatch('login');
+      },
+      movePage(name, params, query) {
+      this.$router.push({ name, params, query }, () => {});
+      },
       searchPageName(value) {
         return this.$route.name === value;
       }
-    }
+    },
   }
 </script>
 
@@ -64,6 +94,15 @@
 
 .hidden {
   opacity: 0;
+  position: relative;
+}
+
+.hidden:after {
+  content:'';
+  width: 100%;
+  height: 5rem;
+  position: absolute;
+  top:0;
 }
 html {
   font-family:

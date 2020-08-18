@@ -2,10 +2,12 @@ import IconUserImg from '~/assets/img/avatar_cat.jpg';
 import IconUserSelf from '~/assets/img/avatar_self.jpeg';
 import firebase from '~/plugins/firebase';
 
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+
 export const state = () => ({
   iconSelf: IconUserSelf,
   userData: {
-    token: '',
+    token: 'dummy',
     name: '',
   },
   postData: [
@@ -108,10 +110,20 @@ export const state = () => ({
   ],
 })
 
+export const getters = {
+  loginCheck (state) {
+    return state.userData.token;
+  }
+}
+
 export const mutations = {
   setLoginInfo(state, value) {
     state.userData.token = value.uid;
     state.userData.name = value.displayName;
+  },
+  deleteLoginInfo(state) {
+    state.userData.token = '';
+    state.userData.name = '';
   },
   pressed(state, pressedData) {
     let pressedIndex;
@@ -130,8 +142,7 @@ export const mutations = {
 }
 
 export const actions = {
-  login(context) {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+  login() {
+      firebase.auth().signInWithRedirect(googleProvider);
   }
 }
