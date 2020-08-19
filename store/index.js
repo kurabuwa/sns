@@ -1,6 +1,7 @@
 import IconUserImg from '~/assets/img/avatar_cat.jpg';
 import IconUserSelf from '~/assets/img/avatar_self.jpeg';
 import firebase from '~/plugins/firebase';
+import 'firebase/auth';
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
@@ -9,117 +10,39 @@ export const state = () => ({
   userData: {
     uid: 'dummy',
     name: '',
+    avatar: '',
   },
-  postData: [
-    {
-      id: 1,
-      src: IconUserImg,
-      userName: '我輩は猫である名前はまだない',
-      text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
-      pressedCount: {
-        reply: 4,
-        heart: 4,
-        retweet: 1,
-      },
-      press: {
-        reply: false,
-        heart: false,
-        retweet: false,
-      }
-    },
-    {
-      id: 2,
-      src: IconUserImg,
-      userName: '我輩は猫である名前はまだない',
-      text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
-      pressedCount: {
-        reply: 4,
-        heart: 4,
-        retweet: 1,
-      },
-      press: {
-        reply: false,
-        heart: false,
-        retweet: false,
-      }
-    },
-    {
-      id: 3,
-      src: IconUserImg,
-      userName: '我輩は猫である名前はまだない',
-      text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
-      pressedCount: {
-        reply: 4,
-        heart: 4,
-        retweet: 1,
-      },
-      press: {
-        reply: false,
-        heart: false,
-        retweet: false,
-      }
-    },
-    {
-      id: 4,
-      src: IconUserImg,
-      userName: '我輩は猫である名前はまだない',
-      text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
-      pressedCount: {
-        reply: 4,
-        heart: 4,
-        retweet: 1,
-      },
-      press: {
-        reply: false,
-        heart: false,
-        retweet: false,
-      }
-    },
-    {
-      id: 5,
-      src: IconUserImg,
-      userName: '我輩は猫である名前はまだない',
-      text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
-      pressedCount: {
-        reply: 4,
-        heart: 4,
-        retweet: 1,
-      },
-      press: {
-        reply: false,
-        heart: false,
-        retweet: false,
-      }
-    },
-    {
-      id: 6,
-      src: IconUserImg,
-      userName: '我輩は猫である名前はまだない',
-      text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
-      pressedCount: {
-        reply: 4,
-        heart: 4,
-        retweet: 1,
-      },
-      press: {
-        reply: false,
-        heart: false,
-        retweet: false,
-      }
-    },
-  ],
+  postData: [],
 })
 
 export const getters = {
   loginCheck (state) {
     return state.userData.uid;
+  },
+  getPostData(state) {
+    return state.postData;
   }
 }
 
 export const mutations = {
+  updateUserData(state, userData) {
+    var user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: userData.name,
+      photoURL: userData.avatar,
+    }).then((data) => {
+      console.log(state.userData);
+    });
+  },
+  setPostData(state, data) {
+    state.postData = data;
+    console.log('set');
+  },
   setLoginInfo(state, value) {
+    console.log(value);
     state.userData.uid = value.uid;
     state.userData.name = value.displayName;
+    state.userData.avatar = value.photoURL;
   },
   setLoginInfoToken(state, value) {
     state.userData.token = value;
@@ -148,5 +71,28 @@ export const mutations = {
 export const actions = {
   login() {
       firebase.auth().signInWithRedirect(googleProvider);
+  },
+  checkPost({commit, state}) {
+    console.log('check');
+    const db = firebase.firestore()
+    db.collection("post").orderBy('createdAt', "desc").onSnapshot((querySnapshot) => {
+        const post = [];
+        querySnapshot.forEach((doc, index) => {
+          const data = doc.data();
+          post.push({
+            uid: state.userData.uid,
+            id: doc.id,
+            src: data.src,
+            userName: data.userName,
+            press: data.press,
+            pressedCount: data.pressedCount,
+            text: data.text,
+            createdAt: data.createdAt
+            });
+            console.log(data);
+        });
+        commit('setPostData',post);
+        // console.log('tuoka ');
+      });
   }
 }

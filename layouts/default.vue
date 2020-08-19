@@ -23,6 +23,7 @@
   import LayoutFooter from '@/components/layout/LayoutFooter';
   import  firebase from '~/plugins/firebase';
   import 'firebase/auth';
+  import 'firebase/firestore';
   import { mapState, mapMutations, mapGetters } from 'vuex';
 
   export default {
@@ -82,27 +83,32 @@
       },
     },
     created() {
+      let post = "post";
+      const data = {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+      };
+
     },
     mounted() {
       if(process.client){
         this.windowSize = document.body.clientWidth;
       }
       firebase.auth().onAuthStateChanged((user) => {
+          console.log(user);
         if (user) {
+          // user.photoURL = "https://firebasestorage.googleapis.com/v0/b/potrfolio-sns.appspot.com/o/nomad_surfing_nangoku.png?alt=media&token=72fd08e8-cde9-435c-adfc-b900d41b96c1",
           this.setLoginInfo(user);
-          firebase.auth().currentUser.getIdToken(true).then((idToken) => {
-            this.setLoginInfoToken(idToken); 
-          }).catch(function(error) {
-            console.log('/default/tokenの取得に失敗しました');
-          });
         }else {
           this.deleteLoginInfo();
+
         }
         this.isActive = true;
       });
     },
     methods: {
-    ...mapMutations(['setLoginInfo', 'deleteLoginInfo', 'setLoginInfoToken']),
+    ...mapMutations(['setLoginInfo', 'deleteLoginInfo', 'setLoginInfoToken', 'updateUserData']),
       login() {
         this.$store.dispatch('login');
       },
@@ -115,7 +121,6 @@
       start() {
         const date = new Date();
         this.swipe.time.before = date.getSeconds()* 1000 + date.getMilliseconds() ;
-        console.log(this.swipe.time.before);
       },
       onScroll(e) {
         let calc = 0;

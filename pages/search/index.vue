@@ -134,7 +134,6 @@
       },
       changeTab(index) {
         this.currentTab = index;
-        console.log(index);
       }
     }
   }

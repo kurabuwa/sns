@@ -19,7 +19,7 @@
     },
     data() {
       return {
-        iconSrc: this.$store.state.iconSelf,
+        iconSrc: this.$store.state.userData.avatar,
         pageType: '',
         title: '投稿',
       };

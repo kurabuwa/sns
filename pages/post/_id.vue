@@ -51,7 +51,7 @@
       },
       getPostData() {
         this.postData = this.$store.state.postData.filter((data) => {
-          if(data.id === Number(this.$route.params.id)) return true;
+          if(data.id === this.$route.params.id) return true;
         })[0];
       }
     }
