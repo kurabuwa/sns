@@ -71,3 +71,18 @@ input:focus {
     }
   }
 }
+
+.slide-enter {
+  transform: translateX(100vw);
+}
+
+.slide-enter-active {
+  transition: all .1s;
+}
+.slide-leave-to {
+  transform: translateX(100vw);
+}
+
+.slide-leave-active {
+  transition: all .1s;
+}

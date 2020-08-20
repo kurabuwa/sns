@@ -30,7 +30,7 @@
 
   export default {
     transition: {
-      name: 'post',
+      name: 'slide',
     },
     data() {
       return {
@@ -60,6 +60,7 @@
 
 <style lang="scss">
 @import '~/assets/sass/variables';
+@import '~/assets/sass/common';
 .post-id {
   position: relative;
   z-index: 999;
@@ -114,18 +115,5 @@
   }
 }
 
-.post-enter {
-  transform: translateX(100vw);
-}
 
-.post-enter-active {
-  transition: all .1s;
-}
-.post-leave-to {
-  transform: translateX(100vw);
-}
-
-.post-leave-active {
-  transition: all .1s;
-}
 </style>

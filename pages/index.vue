@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click='addPost'>
+    <button @click='movePage("post")'>
     記事投稿
     </button>
     <button @click='logout'>
@@ -41,26 +41,11 @@
       PostTireBox,
     },
     created() {
-      // this.db.collection("post").onSnapshot((querySnapshot) => {
-      //   this.post.splice(0, this.post.length)
-      //   querySnapshot.forEach((doc, index) => {
-      //     const data = doc.data();
-      //     this.post.push({
-      //       uid: this.userData.uid,
-      //       id: doc.id,
-      //       src: data.src,
-      //       userName: data.userName,
-      //       press: data.press,
-      //       pressedCount: data.pressedCount,
-      //       text: data.text
-      //       });
-      //   });
-      //   // this.$store.commit('setPostData', this.post);
-      // });
+      Object.assign(this.post, this.postData);
     },
     mounted() {
-      this.$store.dispatch('checkPost')
-      this.$store.watch(
+    console.log(this.post);
+    this.$store.watch(
       (state, getters) => getters.getPostData,
       (newValue) => {
         this.post.splice(-this.post.length);
@@ -73,33 +58,9 @@
       this.$router.push({ name, params, query }, () => {});
       },
       logout() {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
         firebase.auth().signOut()
       },
-      addPost() {
-        const dbb = firebase.firestore();
-        dbb.collection("post").add({
-          src: this.userData.avatar,
-          userName: this.userData.name,
-          text: 'nyaaaaa nyaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaa aaaaa aaaaaaaa',
-          pressedCount: {
-            reply: 4,
-            heart: 4,
-            retweet: 1,
-          },
-          press: {
-            reply: false,
-            heart: false,
-            retweet: false,
-          },
-          createdAt: new Date(),
-        })
-        .then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error) {
-            console.error("Error adding document: ", error);
-        });
-      }
     },
   }
 </script>

@@ -31,12 +31,16 @@ export const mutations = {
       displayName: userData.name,
       photoURL: userData.avatar,
     }).then((data) => {
-      console.log(state.userData);
     });
   },
   setPostData(state, data) {
-    state.postData = data;
-    console.log('set');
+    if(state.postData.length >= 100) {
+      state.postData.splice(0, 1);
+    }
+    state.postData.splice(0, 0, data);
+  },
+  resetPostData(state) {
+    state.postData = [];
   },
   setLoginInfo(state, value) {
     console.log(value);
@@ -75,24 +79,25 @@ export const actions = {
   checkPost({commit, state}) {
     console.log('check');
     const db = firebase.firestore()
-    db.collection("post").orderBy('createdAt', "desc").onSnapshot((querySnapshot) => {
+    commit('resetPostData');
+    db.collection("post").orderBy('createdAt').onSnapshot((querySnapshot) => {
         const post = [];
-        querySnapshot.forEach((doc, index) => {
-          const data = doc.data();
+        querySnapshot.docChanges().forEach((changes, index) => {
+          const data = changes.doc.data();
           post.push({
             uid: state.userData.uid,
-            id: doc.id,
+            id: changes.doc.id,
             src: data.src,
             userName: data.userName,
             press: data.press,
             pressedCount: data.pressedCount,
             text: data.text,
             createdAt: data.createdAt
-            });
-            console.log(data);
+          });
         });
-        commit('setPostData',post);
-        // console.log('tuoka ');
+        post.forEach( (data) => {
+          commit('setPostData',data);
+        } )
       });
   }
 }

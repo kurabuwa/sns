@@ -32,8 +32,8 @@
     },
     data() {
       return {
-        hiddenHeaderName: ['post-id', 'login'],
-        hiddenFooterName: ['post-id', 'login'],
+        hiddenHeaderName: ['post-id', 'login', 'post'],
+        hiddenFooterName: ['post-id', 'login', 'post'],
         isActive: false,
         windowsize: 0,
         calcSize: 0,
@@ -92,6 +92,7 @@
 
     },
     mounted() {
+      this.$store.dispatch('checkPost');
       if(process.client){
         this.windowSize = document.body.clientWidth;
       }
