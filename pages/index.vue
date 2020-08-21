@@ -1,11 +1,5 @@
 <template>
   <div>
-    <button @click='movePage("post")'>
-    記事投稿
-    </button>
-    <button @click='logout'>
-    ログアウト
-    </button>
     <post-tire-box
       :postData='post'
       @emit='movePage'

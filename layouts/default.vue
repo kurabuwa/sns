@@ -9,11 +9,15 @@
           <layout-footer :class='isHiddenFooter'/>
       </transition>
     </div>
-    <button v-if='!loginCheck' @click='login()'>
+    <button v-if='!loginCheck' @click='login()' class='login is-convex'>
       googleでログイン
     </button>
-    <button v-if='loginCheck === "dummy"' @click='login()'>
-      googleでログイン中
+    <button v-if='loginCheck === "dummy"' @click='login()' class='loading'>
+      <div class="orbit-spinner orbit">
+        <div class="orbit"></div>
+        <div class="orbit"></div>
+        <div class="orbit"></div>
+      </div>
     </button>
   </div>
 </template>
@@ -27,6 +31,7 @@
   import { mapState, mapMutations, mapGetters } from 'vuex';
 
   export default {
+    loading: false,
     transition: {
       name: 'page',
     },
@@ -84,12 +89,6 @@
     },
     created() {
       let post = "post";
-      const data = {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      };
-
     },
     mounted() {
       this.$store.dispatch('checkPost');
@@ -158,6 +157,7 @@
 </script>
 
 <style>
+
 .content {
   position: relative;
   z-index: 1;
@@ -209,4 +209,20 @@ html {
   overflow-x: hidden;
 }
 
+.login {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  padding: .5rem 1rem;
+  border-radius: 3rem;
+}
+.loading {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  background-color: #F4FBFF;
+}
 </style>

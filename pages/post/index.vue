@@ -99,6 +99,8 @@ export default {
     &__cansel {
       width: 4rem;
       height: 4rem;
+      font-size: 3rem;
+      color: #707070;
       border-radius: 50%;
     }
 

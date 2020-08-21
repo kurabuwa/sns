@@ -16,6 +16,9 @@
       <i class="far fa-envelope layout-footer__dm__icon"></i>
       <p>DM</p>
     </div>
+    <div class='layout-footer__post' @click='movePage("post")'>
+      <i class="fas fa-plus"></i>
+    </div>
   </div>
 </template>
 
@@ -70,6 +73,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/sass/variables';
+
   %navi {
       text-align: center;
       height: 4rem;
@@ -115,6 +120,22 @@ export default {
       &__icon {
         @extend %icon;
       }
+    }
+
+    &__post {
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      bottom : 6rem;
+      right: 4rem;
+      background-color: #707070;
+      color: $color-bg;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 6px 6px 10px #707070;
     }
   }
 

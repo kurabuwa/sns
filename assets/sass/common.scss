@@ -18,15 +18,10 @@ body, html{
     box-shadow:  4px 4px 6px #cfd5d9, -4px -4px 6px #ffffff;
 }
 
-.is-convex-reverse {
-    background: #f4fbff;
-    border: none;
-    box-shadow:  -2px -2px 2px #cfd5d9, 2px 2px 2px #ffffff;
-}
-
 .is-concave {
     background: #f4fbff;
-    box-shadow: inset 3px 3px 4px #d9dfe3, inset -3px -3px 4px #ffffff;
+    border: none;
+    box-shadow:  -3px -3px 3px #cfd5d9, 3px 3px 3px #ffffff;
 }
 
 .is-concave-border {

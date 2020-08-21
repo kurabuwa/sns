@@ -17,6 +17,7 @@
   "dependencies": {
     "@nuxtjs/now-builder": "^0.17.3",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "epic-spinners": "^1.1.0",
     "firebase": "^7.18.0",
     "google-auth-library": "^6.0.6",
     "nuxt": "^2.14.0"

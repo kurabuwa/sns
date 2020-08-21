@@ -43,7 +43,6 @@ export const mutations = {
     state.postData = [];
   },
   setLoginInfo(state, value) {
-    console.log(value);
     state.userData.uid = value.uid;
     state.userData.name = value.displayName;
     state.userData.avatar = value.photoURL;
@@ -77,7 +76,6 @@ export const actions = {
       firebase.auth().signInWithRedirect(googleProvider);
   },
   checkPost({commit, state}) {
-    console.log('check');
     const db = firebase.firestore()
     commit('resetPostData');
     db.collection("post").orderBy('createdAt').onSnapshot((querySnapshot) => {

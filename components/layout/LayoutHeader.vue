@@ -6,7 +6,7 @@
           type='text'
           :placeholder='title'
           v-if='pageType === "search"' />
-        <p class='layout-header__post'>+</p>
+        <p class='layout-header__post' @click='movePage("post")'>+</p>
     </div>
 </template>
 
