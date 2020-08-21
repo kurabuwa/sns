@@ -44,7 +44,7 @@ export const mutations = {
   },
   setLoginInfo(state, value) {
     state.userData.uid = value.uid;
-    state.userData.name = value.displayName;
+    state.userData.name = value.userName;
     state.userData.avatar = value.photoURL;
   },
   setLoginInfoToken(state, value) {

@@ -59,7 +59,6 @@ export default {
       },
       handleResize: function() {
       if(process.client){
-        console.log('resize');
         const elem = document.getElementById('hidden');
         if(this.windowHeight - window.innerHeight >= 10){
           elem.style.transform = 'translateY(200%)';

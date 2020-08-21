@@ -37,6 +37,12 @@
     },
     data() {
       return {
+        resetUserData: {
+          photoURL: 'https://firebasestorage.googleapis.com/v0/b/potrfolio-sns.appspot.com/o/avatar_cat.jpg?alt=media&token=3d8b33fe-d4ac-4778-9a6d-c1de84a9be2a',
+          userName: 'みんなは猫である',
+          uid: '',
+        },
+        userDataCheck: false,
         hiddenHeaderName: ['post-id', 'login', 'post'],
         hiddenFooterName: ['post-id', 'login', 'post'],
         isActive: false,
@@ -95,17 +101,7 @@
       if(process.client){
         this.windowSize = document.body.clientWidth;
       }
-      firebase.auth().onAuthStateChanged((user) => {
-          console.log(user);
-        if (user) {
-          // user.photoURL = "https://firebasestorage.googleapis.com/v0/b/potrfolio-sns.appspot.com/o/nomad_surfing_nangoku.png?alt=media&token=72fd08e8-cde9-435c-adfc-b900d41b96c1",
-          this.setLoginInfo(user);
-        }else {
-          this.deleteLoginInfo();
-
-        }
-        this.isActive = true;
-      });
+      this.authCheck();
     },
     methods: {
     ...mapMutations(['setLoginInfo', 'deleteLoginInfo', 'setLoginInfoToken', 'updateUserData']),
@@ -114,6 +110,17 @@
       },
       movePage(name, params, query) {
       this.$router.push({ name, params, query }, () => {});
+      },
+      async authCheck(){
+        firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+            this.getUser(user.uid);
+          }else {
+            this.deleteLoginInfo();
+
+          }
+          this.isActive = true;
+        });
       },
       searchPageName(value) {
         return this.$route.name === value;
@@ -151,7 +158,42 @@
         this.swipe.point.y.after = 0;
         this.swipe.x = 0;
         this.swipe.y = 0;
-      }
+      },
+      resetUser(uid) {
+        const db = firebase.firestore();
+        db.collection("user").doc(uid).set({
+          photoURL: this.resetUserData.photoURL,
+          userName: this.resetUserData.userName,
+          uid: uid,
+          dataSet: false,
+        }, { merge: true })
+        .then((docRef) => {
+          console.log('margeUser');
+          this.resetUserData.uid = uid;
+          this.setLoginInfo(this.resetUserData);
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+      },
+      getUser(uid) {
+        const db = firebase.firestore();
+        db.collection("user").doc(uid).get()
+        .then((doc) => {
+          if(doc.exists) {
+            this.userDataCheck = doc.data().dataSet;
+          }
+          if(!this.userDataCheck){
+            this.resetUser(uid);
+          }else {
+
+            this.setLoginInfo(doc.data());
+          }
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+      },
     },
   }
 </script>

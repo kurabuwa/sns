@@ -1,5 +1,8 @@
 <template>
   <div>
+    <button @click='logout'>
+    ログアウト
+    </button>
     <post-tire-box
       :postData='post'
       @emit='movePage'
@@ -38,7 +41,6 @@
       Object.assign(this.post, this.postData);
     },
     mounted() {
-    console.log(this.post);
     this.$store.watch(
       (state, getters) => getters.getPostData,
       (newValue) => {

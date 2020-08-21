@@ -5,13 +5,15 @@
         <button
           class='post__header__cansel is-convex'
           @click='movePageBack'
+          :disabled='disabled'
           >
           ×
         </button>
         <icon-user 
           :src='avatar'
           class='post__header__avatar' />
-        <buttonPost class='post__header__post is-convex' @emit='addPost'/>
+        <buttonPost class='post__header__post is-convex' @emit='addPost' 
+          :disabled='disabled'/>
       </div>
       <textarea v-model='text' maxlength='20s0' class='post__textarea is-concave'/>
     </div>
@@ -35,6 +37,7 @@ export default {
   data() {
     return {
       text: '',
+      disabled: true,
     }
   },
   computed: {
@@ -44,6 +47,7 @@ export default {
   },
   methods: {
     addPost() {
+      this.disabled = true;
       const db = firebase.firestore();
       db.collection("post").add({
         src: this.$store.state.userData.avatar,
@@ -62,6 +66,7 @@ export default {
         createdAt: new Date(),
       })
       .then((docRef) => {
+        this.disabled = false;
         this.movePageBack();
       })
       .catch(function(error) {
@@ -70,6 +75,13 @@ export default {
     },
     movePageBack() {
       this.$router.go(-1);
+    }
+  },
+  watch: {
+    text(val) {
+      if(val !== '') {
+        this.disabled = false;
+      }
     }
   }
 }

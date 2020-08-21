@@ -1,7 +1,7 @@
 <template>
-  <div :class='addClass' @click='$emit("emit")'>
+  <button :class='addClass' @click='$emit("emit")' :disabled='disabled'>
     <i class="fas fa-paper-plane button-post__paper"></i>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -9,6 +9,7 @@
 export default {
   props: {
     small: Boolean,
+    disabled: Boolean,
   },
   computed: {
     addClass() {
