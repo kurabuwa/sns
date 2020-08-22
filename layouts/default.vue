@@ -256,7 +256,8 @@ html {
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 1.5rem;
+  color: #707070;
   padding: .5rem 1rem;
   border-radius: 3rem;
 }
