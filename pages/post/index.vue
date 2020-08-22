@@ -53,15 +53,10 @@ export default {
         src: this.$store.state.userData.avatar,
         userName: this.$store.state.userData.name,
         text: this.text,
-        pressedCount: {
-          reply: 4,
-          heart: 4,
-          retweet: 1,
-        },
         press: {
-          reply: false,
-          heart: false,
-          retweet: false,
+          reply: [],
+          heart: [],
+          retweet: [],
         },
         createdAt: new Date(),
       })

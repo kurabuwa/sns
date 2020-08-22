@@ -17,10 +17,10 @@
             <button-action class='post-tire-thread__list__right__buttons__button'
               v-for='name in buttonName'
               :key='name.id'
-              @emit='pressed($event, thread.id)'
+              @emit='pressed($event, { id: thread.id, index: index})'
               :press='thread.press[name]'
               :name='name'
-              :count='thread.pressedCount[name]'/>
+              :count='thread.press[name].length'/>
           </div>
         </div>
       </li>
@@ -32,6 +32,8 @@
   import { ButtonAction }from '@/components/atoms/button';
   import { IconUser } from '@/components/atoms/icon';
   import { BorderVertical } from '@/components/atoms/border';
+  import  firebase from '~/plugins/firebase';
+  import 'firebase/firestore';
 
   export default {
     props: {
@@ -40,6 +42,7 @@
     data() {
       return {
         buttonName: [ 'reply', 'heart', 'retweet'],
+        uid: this.$store.state.userData.uid,
       }
     },
     components: {
@@ -50,8 +53,22 @@
     created() {
     },
     methods: {
-      pressed(name, id) {
-        this.$store.commit('pressed', { name: name, id: id} );
+      pressed(name, data) {
+        const dataPost = [];
+        Object.assign(dataPost,　this.threadData[data.index].press[name]);
+        if(!dataPost.includes(this.uid)) {
+          dataPost.push(this.uid);
+        } else {
+          dataPost.forEach((item, index) => {
+            if(item === this.uid) {
+              dataPost.splice(index, 1);
+            }
+          })
+        }
+        const db = firebase.firestore().collection('post');
+        db.doc(data.id).update({
+          [`press.${name}`]: dataPost,
+        })
       }
     }
   }

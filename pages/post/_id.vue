@@ -5,7 +5,9 @@
           <div class='post-id__contents__parent'>
             <i @click='$router.go(-1)'class="fas fa-chevron-left post-id__contents__parent__return"></i>
             <post-tire-plane
-              :postData='postData'
+              :postData='this.postData = this.$store.state.postData.filter((data) => {
+                if(data.id === this.$route.params.id) return true;
+              })[0]'
               />
             <border-normal class='post-id__contents__border'/>
           </div>
@@ -43,7 +45,7 @@
       PostTireThread,
     },
     created() {
-      this.getPostData();
+      this.getPostData();;
     },
     methods: {
       movePage(name, params, query) {

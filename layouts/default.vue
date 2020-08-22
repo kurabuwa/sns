@@ -1,5 +1,5 @@
 <template>
-  <div class='wrapper'　@touchmove='onScroll($event)' @touchend='leave' @touchstart='start'>
+  <div class='wrapper'　@touchmove='onScroll($event)' @touchend='leave' @touchstart='start' v-if='!isPc'>
     <div v-if='!(loginCheck ===  "" || loginCheck ===  "dummy")'>
       <transition name='header'>
         <layout-header :class='isHiddenHeader'/>
@@ -19,6 +19,9 @@
         <div class="orbit"></div>
       </div>
     </button>
+  </div>
+  <div class='pc' v-else-if='isPc'>
+    <img src='https://firebasestorage.googleapis.com/v0/b/potrfolio-sns.appspot.com/o/QR.png?alt=media&token=b2c27afb-72af-4062-ada9-5a097c167356'>
   </div>
 </template>
 
@@ -43,8 +46,9 @@
           uid: '',
         },
         userDataCheck: false,
-        hiddenHeaderName: ['post-id', 'login', 'post'],
-        hiddenFooterName: ['post-id', 'login', 'post'],
+        isPc: false,
+        hiddenHeaderName: ['post-id', 'login', 'post', 'pc'],
+        hiddenFooterName: ['post-id', 'login', 'post', 'pc'],
         isActive: false,
         windowsize: 0,
         calcSize: 0,
@@ -94,7 +98,13 @@
       },
     },
     created() {
-      let post = "post";
+      if(process.client) {
+        const ua = window.navigator.userAgent.toLowerCase();
+        if (!((ua.indexOf('iphone') !== -1 || ua.indexOf('ipad') !== -1 || (ua.indexOf('macintosh') && 'ontouchend' in document))
+          || ua.indexOf('android') !== -1)) {
+          this.isPc = true;
+        }
+      }
     },
     mounted() {
       this.$store.dispatch('checkPost');

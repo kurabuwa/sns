@@ -37,7 +37,17 @@ export const mutations = {
     if(state.postData.length >= 100) {
       state.postData.splice(0, 1);
     }
-    state.postData.splice(0, 0, data);
+    let result = -1;
+    state.postData.forEach((dataPost, index) => {
+      if(dataPost.id === data.id) {
+        result = index;
+      }
+    });
+    if(result !== -1) {
+      state.postData.splice(result, 1, data)
+    } else {
+      state.postData.splice(0, 0, data);
+    }
   },
   resetPostData(state) {
     state.postData = [];
@@ -88,7 +98,7 @@ export const actions = {
             src: data.src,
             userName: data.userName,
             press: data.press,
-            pressedCount: data.pressedCount,
+            // pressedCount: data.pressedCount,
             text: data.text,
             createdAt: data.createdAt
           });

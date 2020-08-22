@@ -8,21 +8,20 @@
 </template>
 
 <script>
-
 export default {
   props: {
-    press: Boolean,
+    press: Array,
     count: Number,
     name: String,
   },
   computed: {
     addClass() {
       return {
-        'is-convex': !this.press,
+        'is-convex': this.press.indexOf(this.$store.state.userData.uid) === -1,
         'button-action__content': true,
-        'button-action__heart': this.name === 'heart' && this.press ? true : false,
-        'button-action__retweet': this.name === 'retweet' && this.press ? true: false,
-        'is-concave': this.press,
+        'button-action__heart': this.name === 'heart' && this.press.indexOf(this.$store.state.userData.uid) !== -1 ? true : false,
+        'button-action__retweet': this.name === 'retweet' && this.press.indexOf(this.$store.state.userData.uid) !== -1 ? true: false,
+        'is-concave': this.press.indexOf(this.$store.state.userData.uid) !== -1,
       }
     },
   },
