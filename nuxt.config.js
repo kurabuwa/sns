@@ -59,16 +59,17 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
  manifest: {
-   name: 'PWATest',
+   name: 'TirePost',
    display: "standalone",
-   short_name: 'PWA',
-   title: 'PWATest',
-   'og:title': 'PWATest',
-   description: 'PWATest',
-   'og:description': 'PWATest',
+   short_name: 'TirePset',
+   title: 'TirePost',
+   'og:title': 'TirePost',
+   description: '日頃の愚痴を投稿しよう',
+   'og:description': '日頃の愚痴を投稿しよう',
    lang: 'ja',
    theme_color: '#f4fbfe',
    background_color: '#ffffff',
+   orientation: "portrait",
    "icons": [
     {
       "src": "/logo_144.png",
