@@ -68,7 +68,14 @@ export default {
    'og:description': 'PWATest',
    lang: 'ja',
    theme_color: '#f4fbfe',
-   background_color: '#ffffff'
+   background_color: '#ffffff',
+   "icons": [
+    {
+      "src": "/logo_144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
  },
   build: {
   },
