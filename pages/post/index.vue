@@ -50,6 +50,7 @@ export default {
       this.disabled = true;
       const db = firebase.firestore();
       db.collection("post").add({
+        uid: this.$store.state.userData.uid,
         src: this.$store.state.userData.avatar,
         userName: this.$store.state.userData.name,
         text: this.text,

@@ -11,6 +11,7 @@ export const state = () => ({
     uid: 'dummy',
     name: '',
     avatar: '',
+    desc: '',
   },
   postData: [],
 })
@@ -56,6 +57,7 @@ export const mutations = {
     state.userData.uid = value.uid;
     state.userData.name = value.userName;
     state.userData.avatar = value.photoURL;
+    state.userData.desc = value.desc;
   },
   setLoginInfoToken(state, value) {
     state.userData.token = value;
@@ -93,7 +95,7 @@ export const actions = {
         querySnapshot.docChanges().forEach((changes, index) => {
           const data = changes.doc.data();
           post.push({
-            uid: state.userData.uid,
+            uid: data.uid,
             id: changes.doc.id,
             src: data.src,
             userName: data.userName,

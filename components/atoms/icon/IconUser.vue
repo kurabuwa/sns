@@ -1,5 +1,5 @@
 <template>
-  <div class='icon-user'>
+  <div class='icon-user' @click='$emit("emit")'>
     <img :class='addClass' :src='src'>
   </div>
 </template>
@@ -10,6 +10,7 @@
       props: {
         src: String,
         small: Boolean,
+        large: Boolean,
       },
       computed :{
         addClass() {
@@ -33,6 +34,10 @@
       &--small {
         width: 3rem;
         height: 3rem;
+      }
+      &--large {
+        width: 5rem;
+        height: 5rem;
       }
     }
 </style>

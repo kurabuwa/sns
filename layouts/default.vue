@@ -44,6 +44,7 @@
           photoURL: 'https://firebasestorage.googleapis.com/v0/b/potrfolio-sns.appspot.com/o/avatar_cat.jpg?alt=media&token=3d8b33fe-d4ac-4778-9a6d-c1de84a9be2a',
           userName: 'みんなは猫である',
           uid: '',
+          desc: '猫にされてしまった！早くもとに戻らなければ！'
         },
         userDataCheck: false,
         isPc: false,
@@ -175,6 +176,7 @@
           photoURL: this.resetUserData.photoURL,
           userName: this.resetUserData.userName,
           uid: uid,
+          desc: this.resetUserData.desc,
           dataSet: false,
         }, { merge: true })
         .then((docRef) => {

@@ -88,7 +88,7 @@ export default {
     font-size: 2rem;
   }
   .layout-footer {
-    z-index: 990;
+    z-index: 992;
     width: 100%;
     height: 5rem;
     position: sticky;

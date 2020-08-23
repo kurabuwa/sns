@@ -1,6 +1,6 @@
 <template>
     <div class='layout-header is-convex'>
-        <icon-user class='layout-header__icon__img' :src='iconSrc' />
+        <icon-user class='layout-header__icon__img' :src='iconSrc' @emit='movePage("user-id", uid)'/>
         <p class='layout-header__title'　v-if='pageType !== "search"'>{{title}}</p>
         <input class='is-concave layout-header__search'
           type='text'
@@ -20,6 +20,7 @@
     data() {
       return {
         iconSrc: this.$store.state.userData.avatar,
+        uid: this.$store.state.userData.uid,
         pageType: '',
         title: '投稿',
       };
