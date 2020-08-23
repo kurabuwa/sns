@@ -14,7 +14,8 @@
               </div>
               <div class='user-id__prof__contents__top__right'>
                 <div class='user-id__prof__contents__top__right__dm is-convex'>
-                  <i class="far fa-envelope layout-footer__dm__icon"></i>
+                  <i v-if='false' class="far fa-envelope layout-footer__dm__icon"></i>
+                  <i class="fas fa-cog layout-footer__dm__icon" @click='movePage("setting")'></i>
                 </div>
                 <p class='user-id__prof__contents__top__right__follow is-convex'>
                   フォローする
@@ -74,7 +75,7 @@
               uid: data.uid,
               id: changes.doc.id,
               src: data.src,
-              userName: data.userName,
+              name: data.name,
               press: data.press,
               text: data.text,
               createdAt: data.createdAt
@@ -114,6 +115,8 @@
   width: 100vw;
 
   &__wrapper {
+
+    overflow: scroll;
     position: absolute;
     top: -6rem;
     z-index: 100;

@@ -3,7 +3,7 @@
     <div @click='$emit("emit", "post-id", {id: postData.id})'>
       <div class='post-tire-plane__user'>
         <icon-user :src='postData.src' :small='iconSmall'/>
-        <p class='post-tire-plane__user__title'>{{postData.userName}}</p>
+        <p class='post-tire-plane__user__title'>{{postData.name}}</p>
       </div>
       <p class='post-tire-plane__text'>{{postData.text}}</p>
     </div>

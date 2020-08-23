@@ -52,19 +52,19 @@
             >
             <user-normal
               class='search__result__contents__user__content'
-              :userName='user.userName'
+              :name='user.name'
               :avatar='user.src'
               />
             <border-normal />
             <user-normal
               class='search__result__contents__user__content'
-              :userName='user.userName'
+              :name='user.name'
               :avatar='user.src'
               />
             <border-normal />
             <user-normal
               class='search__result__contents__user__content'
-              :userName='user.userName'
+              :name='user.name'
               :avatar='user.src'
               />
             <border-normal />

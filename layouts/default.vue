@@ -41,14 +41,14 @@
     data() {
       return {
         resetUserData: {
-          photoURL: 'https://firebasestorage.googleapis.com/v0/b/potrfolio-sns.appspot.com/o/avatar_cat.jpg?alt=media&token=3d8b33fe-d4ac-4778-9a6d-c1de84a9be2a',
-          userName: 'みんなは猫である',
+          avatar: 'https://firebasestorage.googleapis.com/v0/b/potrfolio-sns.appspot.com/o/avatar_cat.jpg?alt=media&token=3d8b33fe-d4ac-4778-9a6d-c1de84a9be2a',
+          name: 'みんなは猫である',
           uid: '',
-          desc: '猫にされてしまった！早くもとに戻らなければ！'
+          desc: '猫にされてしまった！'
         },
         userDataCheck: false,
         isPc: false,
-        hiddenHeaderName: ['post-id', 'login', 'post', 'pc'],
+        hiddenHeaderName: ['post-id', 'login', 'post', 'pc', 'user-id', 'setting'],
         hiddenFooterName: ['post-id', 'login', 'post', 'pc'],
         isActive: false,
         windowsize: 0,
@@ -173,8 +173,8 @@
       resetUser(uid) {
         const db = firebase.firestore();
         db.collection("user").doc(uid).set({
-          photoURL: this.resetUserData.photoURL,
-          userName: this.resetUserData.userName,
+          avatar: this.resetUserData.avatar,
+          name: this.resetUserData.name,
           uid: uid,
           desc: this.resetUserData.desc,
           dataSet: false,

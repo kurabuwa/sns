@@ -2,7 +2,7 @@
   <div class='user-normal'>
     <icon-user :src='avatar' small></icon-user>
     <div class='left'>
-      <p class='user-normal__userName'>{{userName}}</p>
+      <p class='user-normal__userName'>{{name}}</p>
       <p class='user-normal__text'>{{text}}</p>
     </div>
   </div>
@@ -14,7 +14,7 @@ import { IconUser } from '@/components/atoms/icon';
 export default {
   props: {
     text: String,
-    userName: String,
+    name: String,
     avatar: String,
   },
   components: {

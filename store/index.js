@@ -55,8 +55,8 @@ export const mutations = {
   },
   setLoginInfo(state, value) {
     state.userData.uid = value.uid;
-    state.userData.name = value.userName;
-    state.userData.avatar = value.photoURL;
+    state.userData.name = value.name;
+    state.userData.avatar = value.avatar;
     state.userData.desc = value.desc;
   },
   setLoginInfoToken(state, value) {
@@ -98,7 +98,7 @@ export const actions = {
             uid: data.uid,
             id: changes.doc.id,
             src: data.src,
-            userName: data.userName,
+            name: data.name,
             press: data.press,
             // pressedCount: data.pressedCount,
             text: data.text,

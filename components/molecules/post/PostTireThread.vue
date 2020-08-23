@@ -10,7 +10,7 @@
         </div>
         <div class='post-tire-thread__list__right'>
           <div @click='$emit("emit", "post-id", {id: thread.id})'>
-            <p class='post-tire-thread__list__right__title'>{{thread.userName}}</p>
+            <p class='post-tire-thread__list__right__title'>{{thread.name}}</p>
             <p class='post-tire-thread__list__right__text'>{{thread.text}}</p>
           </div>
           <div class='post-tire-thread__list__right__buttons'>

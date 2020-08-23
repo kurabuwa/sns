@@ -52,7 +52,7 @@ export default {
       db.collection("post").add({
         uid: this.$store.state.userData.uid,
         src: this.$store.state.userData.avatar,
-        userName: this.$store.state.userData.name,
+        name: this.$store.state.userData.name,
         text: this.text,
         press: {
           reply: [],
