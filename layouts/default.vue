@@ -155,6 +155,7 @@
         }
       },
       leave() {
+        console.log('test');
         const calcPoint = this.swipe.x / this.swipe.y;
         const date = new Date();
         this.swipe.time.after = date.getSeconds()* 1000 + date.getMilliseconds();
