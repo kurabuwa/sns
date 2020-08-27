@@ -141,8 +141,8 @@
         this.swipe.time.before = date.getSeconds()* 1000 + date.getMilliseconds() ;
       },
       onScroll(e) {
-        let calc = 0;
         const ev = e.changedTouches[0];
+        let calc = 0;
         this.swipe.point.x.before = this.swipe.point.x.after
         this.swipe.point.x.after = ev.pageX
         if(this.swipe.point.x.before !== 0) {
